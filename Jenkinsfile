@@ -43,7 +43,7 @@ pipeline {
  //                mavenLocalRepo: '.repository') {
  
       // Run the maven build
-      sh "mvn -f /app/pom.xml clean install"
+      sh "mvn -f app/pom.xml clean install"
  	        }
 
                      docker.withServer('tcp://docker.donemmerson.co.uk:2376','becb15d9-c188-4bf1-b0ed-27b34849688f') {
