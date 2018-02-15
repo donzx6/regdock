@@ -100,7 +100,7 @@ pipeline {
 //             docker.withServer('tcp://docker.donemmerson.co.uk:2376','becb15d9-c188-4bf1-b0ed-27b34849688f') {
        
                docker.withRegistry('https://docker.donemmerson.co.uk:443', '4aa2c853-54a6-40b9-8fca-0fc13d9a26a9') {
-               app.push('latest')
+               app.push()
  
 
 //}      
