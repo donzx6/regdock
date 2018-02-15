@@ -22,7 +22,7 @@
 
 - name: delete image
   docker_image:
-    name: dbapp
+    name: usrdb
     tag: latest
     state: absent
     
