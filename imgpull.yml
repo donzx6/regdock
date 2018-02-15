@@ -7,8 +7,8 @@
   roles:
    - { role: Dockerclean }
    - { role: network }
-   - { role: dbapp_install }
    - { role: repologin }
    - { role: repopull }
+   - { role: dbapp_install }   
    - { role: webapp_install }
 ...
