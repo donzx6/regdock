@@ -1,0 +1,14 @@
+---
+- name: pull dbapp
+  docker_image:
+    repository: docker.donemmerson.co.uk:443/dbapp
+    name: docker.donemmerson.co.uk:443/dbapp:latest
+    tag: all
+    state: present
+    
+- name: pull webapp
+  docker_image:
+    repository: docker.donemmerson.co.uk:443/usrsignup
+    name: docker.donemmerson.co.uk:443/usrsignup:latest
+    tag: all
+    state: present

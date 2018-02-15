@@ -1,0 +1,7 @@
+---
+- name: login to reg
+  docker_login:
+    registry:  docker.donemmerson.co.uk:443
+    api_version: 1.26
+    username: don
+    password: grac1ebeth   

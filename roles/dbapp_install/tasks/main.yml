@@ -1,0 +1,11 @@
+---
+- name: Re-create a db container
+  docker_container:
+    name: dbapp
+    image: dbapp
+    state: started
+    exposed_ports:
+      - 3306
+    networks: 
+      - name: network_one
+    

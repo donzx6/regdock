@@ -1,0 +1,29 @@
+---
+- name: Stop a container
+  docker_container:
+    name: dbapp
+    state: absent
+- name: Stop webapp    
+  docker_container:
+    name: webapp
+    state: absent
+    
+- name: Delete a network, disconnecting all containers
+  docker_network:
+    name: network_one
+    state: absent
+    force: yes
+
+- name: delete image
+  docker_image:
+    name: usrsignup
+    tag: latest
+    state: absent
+
+- name: delete image
+  docker_image:
+    name: dbapp
+    tag: latest
+    state: absent
+    
+    

@@ -1,0 +1,14 @@
+---
+- name: Pull Image
+  hosts: all
+  remote_user: ec2-user
+  become: yes
+  become_method: sudo
+  roles:
+   - { role: Dockerclean }
+   - { role: network }
+   - { role: dbapp_install }
+   - { role: repologin }
+   - { role: repopull }
+   - { role: webapp_install }
+...
