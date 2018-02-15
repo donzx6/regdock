@@ -8,7 +8,7 @@ pipeline {
    agent any             //execute on any agent/node
    tools
        {
-       maven 'don'
+       maven '3.5.2'
        jdk 'don'
 }
   stages {
