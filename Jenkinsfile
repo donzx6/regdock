@@ -32,7 +32,7 @@ pipeline {
 
                
      
- 	  stage ('Build Image') {            // build image
+ 	  stage ('Build App') {            // build image
  	     steps {
  	        script{                // build app
 // 	        withMaven {
@@ -46,17 +46,13 @@ pipeline {
       sh "mvn -f app/pom.xml clean install"
 // 	        }
 
-//                     docker.withServer('tcp://docker.donemmerson.co.uk:2376','becb15d9-c188-4bf1-b0ed-27b34849688f') {
+                     docker.withServer('tcp://docker.donemmerson.co.uk:2376','becb15d9-c188-4bf1-b0ed-27b34849688f') {
                
-//               app = docker.build "usrsignup"
+               app = docker.build "usrsignup"
     
        
-//       } 
+       } 
 
-                 sh '''
-                    echo "PATH = ${PATH}"
-                    echo "M2_HOME = ${M2_HOME}"
-                  ''' 
        
             }             //close script   
          }             //close steps
