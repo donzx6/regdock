@@ -35,7 +35,7 @@ pipeline {
  	  stage ('Build Image') {            // build image
  	     steps {
  	        script{                // build app
- 	        withMaven {
+// 	        withMaven {
 // 	            maven: 'M2'
  	                 // Maven settings.xml file defined with the Jenkins Config File Provider Plugin
                      // Maven settings and global settings can also be defined in Jenkins Global Tools Configuration
@@ -43,15 +43,21 @@ pipeline {
  //                mavenLocalRepo: '.repository') {
  
       // Run the maven build
-      sh "mvn -f app/pom.xml clean install"
- 	        }
+//      sh "mvn -f app/pom.xml clean install"
+// 	        }
 
-                     docker.withServer('tcp://docker.donemmerson.co.uk:2376','becb15d9-c188-4bf1-b0ed-27b34849688f') {
+//                     docker.withServer('tcp://docker.donemmerson.co.uk:2376','becb15d9-c188-4bf1-b0ed-27b34849688f') {
                
-               app = docker.build "usrsignup"
+//               app = docker.build "usrsignup"
     
        
-       }        
+//       } 
+
+                 sh '''
+                    echo "PATH = ${PATH}"
+                    echo "M2_HOME = ${M2_HOME}"
+                  ''' 
+       
             }             //close script   
          }             //close steps
       }             //close stage
