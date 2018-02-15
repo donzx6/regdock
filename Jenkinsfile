@@ -30,35 +30,36 @@ pipeline {
         }            // close steps
      }            //close stage
 
-// ############# Build code ##############
+// ############# Build db ##############
 
                
-     
+
+ 	  stage ('Build db App') {            // build image
+ 	     steps {
+ 	        script{                // build app
+               dbapp = docker.build ("usrdb", "registration-database/")
+       
+            }             //close script   
+         }             //close steps
+      }             //close stage
+           
  	  stage ('Build Web App') {            // build image
  	     steps {
  	        script{                // build app
-// 	        withMaven {
-// 	            maven: 'M2'
- 	                 // Maven settings.xml file defined with the Jenkins Config File Provider Plugin
-                     // Maven settings and global settings can also be defined in Jenkins Global Tools Configuration
- //                mavenSettingsConfig: 'my-maven-settings',
- //                mavenLocalRepo: '.repository') {
  
       // Run the maven build
 
-// 	        }
-
-//                     docker.withServer('tcp://docker.donemmerson.co.uk:2376','becb15d9-c188-4bf1-b0ed-27b34849688f') {
-      sh "mvn -f app/pom.xml clean install"               
+               sh "mvn -f app/pom.xml clean install"               
                webapp = docker.build ("usrsignup", "registration-webserver/")
-               dbapp = docker.build ("usrdb", "registration-database/")
-       
+           
 //       } 
 
        
             }             //close script   
          }             //close steps
       }             //close stage
+      
+           
       
 // ############# Commit dev version ##############
       
