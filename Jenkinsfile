@@ -1,8 +1,10 @@
 pipeline {
 
    environment {         // ensure app object available across stages
-   def app = '' 
-   def cont = ''     
+   def webapp = '' 
+   def dbapp = ''
+   def webcont = ''
+   def dbcont= ''     
    }                     // close environment
 
    agent any             //execute on any agent/node
@@ -32,7 +34,7 @@ pipeline {
 
                
      
- 	  stage ('Build App') {            // build image
+ 	  stage ('Build Web App') {            // build image
  	     steps {
  	        script{                // build app
 // 	        withMaven {
@@ -48,8 +50,8 @@ pipeline {
 
                      docker.withServer('tcp://docker.donemmerson.co.uk:2376','becb15d9-c188-4bf1-b0ed-27b34849688f') {
                
-               app = docker.build ("usrsignup", "registration-webserver/")
-    
+               webapp = docker.build ("usrsignup", "registration-webserver/")
+               dbapp = docker.build ("usrdb", "registration-database/")
        
        } 
 
@@ -100,7 +102,8 @@ pipeline {
              docker.withServer('tcp://docker.donemmerson.co.uk:2376','becb15d9-c188-4bf1-b0ed-27b34849688f') {
        
                docker.withRegistry('https://localhost:443/', '4aa2c853-54a6-40b9-8fca-0fc13d9a26a9') {
-               app.push()
+               webapp.push()
+               dbapp.push()
  
 
 }      
