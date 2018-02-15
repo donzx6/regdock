@@ -120,7 +120,7 @@ pipeline {
                               importWorkflowChildLogs: false,
                               inventory: 'Test_Docker_Inventory',
                               jobTags: '',
-                              jobTemplate: 'Pull_Image',
+                              jobTemplate: 'usersignup_install',
                               limit: '',
                               removeColor: false,
                               templateType: 'job',
