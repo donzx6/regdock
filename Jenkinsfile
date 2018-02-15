@@ -48,7 +48,7 @@ pipeline {
 
                      docker.withServer('tcp://docker.donemmerson.co.uk:2376','becb15d9-c188-4bf1-b0ed-27b34849688f') {
                
-               app = docker.build ("usrsignup", "-f registration-webserver/Dockerfile")
+               app = docker.build ("-f registration-webserver/Dockerfile")
     
        
        } 
