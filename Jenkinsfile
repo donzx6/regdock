@@ -49,7 +49,8 @@ pipeline {
  
       // Run the maven build
 
-               sh "mvn -f app/pom.xml clean install"               
+               sh "mvn -f app/pom.xml clean package -U"         
+               sh "cp target/project.war ./tmp-docker-build-context"
                webapp = docker.build ("usrsignup", "registration-webserver/")
            
 //       } 
