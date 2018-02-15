@@ -23,7 +23,7 @@ pipeline {
 //              docker.withServer('tcp://docker.donemmerson.co.uk:2376','becb15d9-c188-4bf1-b0ed-27b34849688f') {
                
               git branch: 'master', credentialsId: '585d90d4-4d66-42ff-ad2f-7a4b7615f623', url: 'https://gitlab.com/Don-Emmerson/registration-docker.git'
-      }
+//      }
            }             // close script 
         }            // close steps
      }            //close stage
