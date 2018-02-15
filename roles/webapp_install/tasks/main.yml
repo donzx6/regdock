@@ -4,6 +4,8 @@
     name: webapp
     image: docker.donemmerson.co.uk:443/usrsignup:latest
     state: started
+    volumes:
+    - "./app/target/UserSignup:/usr/local/tomcat/webapps/UserSignup" 
     exposed_ports:
       - 8080
     published_ports: 
