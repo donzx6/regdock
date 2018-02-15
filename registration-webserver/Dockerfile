@@ -21,7 +21,7 @@ RUN mkdir $CATALINA_HOME/webapps/UserSignup
 ENV JPDA_ADDRESS="8000"
 ENV JPDA_TRANSPORT="dt_socket"
 
-ADD ./app/target/UserSignup.war $CATALINA_HOME/webapps/
+ADD /var/lib/jenkins/workspace/labpip/app/target/UserSignup.war $CATALINA_HOME/webapps/
 # start tomcat7 with remote debugging
 EXPOSE 8080
 CMD ["run.sh"]
