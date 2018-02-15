@@ -1,8 +1,8 @@
 ---
 - name: pull dbapp
   docker_image:
-    repository: docker.donemmerson.co.uk:443/dbapp
-    name: docker.donemmerson.co.uk:443/dbapp:latest
+    repository: docker.donemmerson.co.uk:443/usrdb
+    name: docker.donemmerson.co.uk:443/usrdb:latest
     tag: all
     state: present
     

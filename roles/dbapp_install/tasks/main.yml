@@ -2,7 +2,7 @@
 - name: Re-create a db container
   docker_container:
     name: dbapp
-    image: dbapp
+    image: usrdb
     state: started
     exposed_ports:
       - 3306
