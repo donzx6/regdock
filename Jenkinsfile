@@ -48,12 +48,12 @@ pipeline {
 
 // 	        }
 
-                     docker.withServer('tcp://docker.donemmerson.co.uk:2376','becb15d9-c188-4bf1-b0ed-27b34849688f') {
+//                     docker.withServer('tcp://docker.donemmerson.co.uk:2376','becb15d9-c188-4bf1-b0ed-27b34849688f') {
       sh "mvn -f app/pom.xml clean install"               
                webapp = docker.build ("usrsignup", "registration-webserver/")
                dbapp = docker.build ("usrdb", "registration-database/")
        
-       } 
+//       } 
 
        
             }             //close script   
@@ -99,14 +99,14 @@ pipeline {
       stage ('Commit to registry') {
          steps {
             script {
-             docker.withServer('tcp://docker.donemmerson.co.uk:2376','becb15d9-c188-4bf1-b0ed-27b34849688f') {
+//             docker.withServer('tcp://docker.donemmerson.co.uk:2376','becb15d9-c188-4bf1-b0ed-27b34849688f') {
        
-               docker.withRegistry('https://localhost:443/', '4aa2c853-54a6-40b9-8fca-0fc13d9a26a9') {
+               docker.withRegistry('https://docker.donemmerson.co.uk:443/', '4aa2c853-54a6-40b9-8fca-0fc13d9a26a9') {
                webapp.push()
                dbapp.push()
  
 
-}      
+//}      
                }              // close docker.with.registry
             }              // close script
          }              //close steps
