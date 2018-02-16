@@ -21,6 +21,7 @@ RUN mkdir $CATALINA_HOME/webapps/UserSignup
 ENV JPDA_ADDRESS="8000"
 ENV JPDA_TRANSPORT="dt_socket"
 ADD UserSignup.war /usr/local/tomcat/webapps/UserSignup/
+ADD README.md /usr/local/tomcat/webapps/UserSignup/
 # start tomcat7 with remote debugging
 EXPOSE 8080
 CMD ["run.sh"]
