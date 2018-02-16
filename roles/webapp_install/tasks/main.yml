@@ -11,4 +11,4 @@
     networks: 
       - name: network_one
     links:
-      - "database:dbapp"
+      - "dbapp:database"
