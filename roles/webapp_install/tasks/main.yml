@@ -10,3 +10,5 @@
       - "8080:8080"
     networks: 
       - name: network_one
+    links:
+      - "database:dbapp"
