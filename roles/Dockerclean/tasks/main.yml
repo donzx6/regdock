@@ -1,9 +1,10 @@
 ---
-- name: Stop a container
+- name: delete container
   docker_container:
     name: dbapp
     state: absent
-- name: Stop webapp    
+    
+- name: delete webapp    
   docker_container:
     name: webapp
     state: absent
@@ -16,13 +17,13 @@
 
 - name: delete image
   docker_image:
-    name: usrsignup
+    name: docker.donemmerson.co.uk:443/usrsignup
     tag: latest
     state: absent
 
 - name: delete image
   docker_image:
-    name: usrdb
+    name: docker.donemmerson.co.uk:443/usrdb
     tag: latest
     state: absent
     
