@@ -6,6 +6,8 @@
     state: started
     exposed_ports:
       - 3306
+    published_ports: 
+      - "3306:3306"
     networks: 
       - name: network_one
     
