@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<suite name="sample suite">
+<test name="learning jenkins">
+<classes>
+<class name="com.google.tests.GoogleHomePageTest"></class>
+</classes>
+</test>
+</suite>	
