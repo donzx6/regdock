@@ -14,6 +14,9 @@ public class GoogleHomePageTest {
 
 	@BeforeClass
 	public void testSetUp() {
+	
+	    System.setProperty("webdriver.Firefoxdriver","/home/ec2-user/");
+		driver = new FirefoxDriver();
 		
 		driver = new FirefoxDriver();
 	}
