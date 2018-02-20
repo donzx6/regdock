@@ -6,6 +6,7 @@ import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
+import org.openqa.selenium.firefox.FirefoxOptions;
 
 public class GoogleHomePageTest {
 	
@@ -20,6 +21,11 @@ public class GoogleHomePageTest {
 	
 	    System.setProperty("webdriver.Firefoxdriver","/home/ubuntu/");
 	    System.setProperty("webdriver.gecko.driver", "/home/ubuntu/gecko/geckodriver");
+	    //Set Firefox Headless mode as TRUE
+		FirefoxOptions options = new FirefoxOptions();
+		options.setHeadless(true);
+	    
+	    
 		driver = new FirefoxDriver();
 	}
 	
