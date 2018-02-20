@@ -11,9 +11,16 @@ public class GoogleHomePageTest {
 	
 	private WebDriver driver; 
 	String appURL = "http://google.com";
+	
+	
 
 	@BeforeClass
 	public void testSetUp() {
+	
+	FirefoxBinary firefoxBinary = new FirefoxBinary();
+
+    firefoxBinary.addCommandLineOptions("--headless");
+	
 	
 	    System.setProperty("webdriver.Firefoxdriver","/home/ubuntu/");
 	    System.setProperty("webdriver.gecko.driver", "/home/ubuntu/gecko/geckodriver");
