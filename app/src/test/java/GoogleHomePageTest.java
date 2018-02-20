@@ -15,7 +15,7 @@ public class GoogleHomePageTest {
 	@BeforeClass
 	public void testSetUp() {
 	
-	    System.setProperty("webdriver.Firefoxdriver","/home/ec2-user/");
+	    System.setProperty("webdriver.Firefoxdriver","/home/ubuntu/");
 	     capa.setBrowserName("firefox");
          capa.setCapability("binary", "/usr/lib/firefox");
          capa.setPlatform(Platform.ANY);
