@@ -16,11 +16,7 @@ public class GoogleHomePageTest {
 	public void testSetUp() {
 	
 	    System.setProperty("webdriver.Firefoxdriver","/home/ubuntu/");
-	     capa.setBrowserName("firefox");
-         capa.setCapability("binary", "/usr/lib/firefox");
-         capa.setPlatform(Platform.ANY);
-		driver = new FirefoxDriver();
-		
+	    
 		driver = new FirefoxDriver();
 	}
 	
