@@ -12,7 +12,7 @@ pipeline {
        {
        maven '3.5.2'
        jdk 'don'
-}
+       }
   stages {
    
  
@@ -32,16 +32,16 @@ pipeline {
 
 // ############# Build db ##############
 
-               
-
- 	  stage ('Build db App') {            // build image
+       stage ('Build db App') {            // build image
  	     steps {
  	        script{                // build app
                dbapp = docker.build ("usrdb", "registration-database/")
        
             }             //close script   
          }             //close steps
-      }             //close stage
+       }             //close stage
+       
+// ############# Build web app ##############       
            
  	  stage ('Build Web App') {            // build image
  	     steps {
@@ -51,26 +51,20 @@ pipeline {
 
                sh "mvn -f app/pom.xml clean test package -U"         
            
-//       } 
-
        
             }             //close script   
          }             //close steps
       }             //close stage
       
 //################ Add app to docker ###############
-     	  stage ('Build Docker Web App') {            // build image
- 	     steps {
- 	        script{                // build app
- 
-      // Run the maven build
+     	
+     stage ('Build Docker Web App') {            // build image
+ 	    steps {
+ 	       script{                // build app
 
                sh "cp /home/ubuntu/workspace/labpip/app/target/UserSignup.war /home/ubuntu/workspace/labpip/registration-webserver/"
                webapp = docker.build ("usrsignup", "registration-webserver/")
            
-//       } 
-
-       
             }             //close script   
          }             //close steps
       }             //close stage
@@ -78,63 +72,78 @@ pipeline {
       
 // ############# Commit dev version ##############
       
-//      stage ('Commit dev to registry') {
-//         steps {
-//            script {
-//       
-//               docker.withRegistry('https://docker.donemmerson.co.uk:5000', '4aa2c853-54a6-40b9-8fca-0fc13d9a26a9') {
-//               app.push('dev')
-//       
-//               }              // close docker.with.reg
-//            }              // close script
-//         }              //close step
-//      }              //close stage 
+     stage ('Commit dev') {
+        steps {
+           script {
+       
+               docker.withRegistry('https://docker.donemmerson.co.uk:443', '4aa2c853-54a6-40b9-8fca-0fc13d9a26a9') {
+               webapp.push('dev')
+               dbapp.push('dev')
+       
+              }              // close docker.with.reg
+           }              // close script
+        }              //close step
+     }              //close stage 
      
-// ############# Deploy code ##############
+// ############# Deploy to dev  ##############
       
-//      stage ('Deploy Docker Image') {
-//        steps {
-//            script{
-//              docker.withRegistry('https://docker.donemmerson.co.uk:5000', '4aa2c853-54a6-40b9-8fca-0fc13d9a26a9') {
-//              docker.withServer('tcp://docker.donemmerson.co.uk:2376', 'dockerSSL') {
-//                docker.pull('https://docker.donemmerson.co.uk:5000/bamboo:dev') {
-//                }
-//               docker.withServer('tcp://docker.donemmerson.co.uk:2376', 'dockerSSL') {
-//               container = app.run("--name bamboo -d -p 3000:3000") 
-//               
-//              def cont = image.run("bamboo:dev") 
-//}
-//            }                //close dockerwithreg.
-//               }              //close dockerwithserver
-//            }             //close script   
-//         }             //close steps
-//      }             //close stage
+     stage ('Deploy Docker Image') {
+        steps {
+           script{
+              ansibleTower (credential: 'slave1', 
+                            extraVars: '', 
+                            importTowerLogs: true,
+                            importWorkflowChildLogs: false,
+                            inventory: 'Dev_Docker_Inventory',
+                            jobTags: '',
+                            jobTemplate: 'usersignup_install',
+                            limit: '',
+                            removeColor: false,
+                            templateType: 'job',
+                            towerServer: 'Ansible tower',
+                            verbose: true)
+           }             //close script   
+        }             //close steps
+     }             //close stage
      
+// ############# Test Dev Deploy ##############       
+           
+ 	  stage ('Dev Test') {            // test dev instance
+ 	     steps {
+ 	        script{                
+ 
+      // Run the maven test
+
+               sh "mvn -f app/pom.xml test"         
+           
+           }             //close script   
+        }             //close steps
+     }             //close stage
+      
+
 // ############# Commit ##############
       
-      stage ('Commit to registry') {
+      stage ('Commit to Prod') {
          steps {
             script {
-//             docker.withServer('tcp://docker.donemmerson.co.uk:2376','becb15d9-c188-4bf1-b0ed-27b34849688f') {
        
                docker.withRegistry('https://docker.donemmerson.co.uk:443/', '4aa2c853-54a6-40b9-8fca-0fc13d9a26a9') {
-               webapp.push()
-               dbapp.push()
- 
+               webapp.push('latest')
+               dbapp.push('latest')
 
-//}      
-               }              // close docker.with.registry
+                }              // close docker.with.registry
             }              // close script
          }              //close steps
       }              //close stage   
-      stage ('deploy with ansible') {
+
+      stage ('deploy to Prod') {
          steps{
             script {
                 ansibleTower (credential: 'slave1', 
                               extraVars: '', 
                               importTowerLogs: true,
                               importWorkflowChildLogs: false,
-                              inventory: 'Test_Docker_Inventory',
+                              inventory: 'Prod_Docker_Inventory',
                               jobTags: '',
                               jobTemplate: 'usersignup_install',
                               limit: '',
