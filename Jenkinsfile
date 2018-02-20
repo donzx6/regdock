@@ -49,7 +49,7 @@ pipeline {
  
       // Run the maven build
 
-               sh "mvn -f app/pom.xml clean test package -U"         
+               sh "mvn -f app/pom.xml clean package -U"         
            
        
             }             //close script   
