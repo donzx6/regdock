@@ -16,7 +16,7 @@ public class GoogleHomePageTest {
 	public void testSetUp() {
 	
 	    System.setProperty("webdriver.Firefoxdriver","/home/ubuntu/");
-	    
+	    System.setProperty("webdriver.gecko.driver", "/home/ubuntu/gecko")
 		driver = new FirefoxDriver();
 	}
 	
