@@ -90,6 +90,11 @@ pipeline {
      stage ('Deploy Docker Image') {
         steps {
            script{
+//                
+              sh "sudo cp /hosts/inventory /etc/ansible/hosts" 
+              ansiblePlaybook(credentialsId: '8838ded7-6c9a-48c9-9963-997d5c8a9b7f', inventory: 'dev', playbook: 'dev_deploy.yml')
+   
+  
               ansibleTower (credential: 'slave1', 
                             extraVars: '', 
                             importTowerLogs: true,
