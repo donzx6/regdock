@@ -18,7 +18,7 @@ pipeline {
  
 // ############# get code ##############   
    
-      stage('Get code') {   // check out code from gitlab
+      stage('Pulling Code') {   // check out code from gitlab
          steps {
             script {
             
@@ -50,8 +50,6 @@ pipeline {
       // Run the maven build
 
                sh "mvn -f app/pom.xml clean test package -U"         
-//             sh "cp /var/lib/jenkins/workspace/labpip/app/target/UserSignup.war /var/lib/jenkins/workspace/labpip/registration-webserver/"
-               webapp = docker.build ("usrsignup", "registration-webserver/")
            
 //       } 
 
@@ -60,7 +58,23 @@ pipeline {
          }             //close steps
       }             //close stage
       
+//################ Add app to docker ###############
+     	  stage ('Build Docker Web App') {            // build image
+ 	     steps {
+ 	        script{                // build app
+ 
+      // Run the maven build
+
+               sh "cp /home/ubuntu/workspace/labpip/app/target/UserSignup.war /home/ubuntu/workspace/labpip/registration-webserver/"
+               webapp = docker.build ("usrsignup", "registration-webserver/")
            
+//       } 
+
+       
+            }             //close script   
+         }             //close steps
+      }             //close stage
+             
       
 // ############# Commit dev version ##############
       
