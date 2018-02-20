@@ -50,7 +50,7 @@ pipeline {
       // Run the maven build
 
                sh "mvn -f app/pom.xml clean test package -U"         
-               sh "cp /var/lib/jenkins/workspace/labpip/app/target/UserSignup.war /var/lib/jenkins/workspace/labpip/registration-webserver/"
+//             sh "cp /var/lib/jenkins/workspace/labpip/app/target/UserSignup.war /var/lib/jenkins/workspace/labpip/registration-webserver/"
                webapp = docker.build ("usrsignup", "registration-webserver/")
            
 //       } 
