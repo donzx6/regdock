@@ -19,6 +19,10 @@ pipeline {
 // ############# get code ##############   
    
       stage('Pulling Code') {   // check out code from gitlab
+      agent {
+          label 'slave1'
+      }
+
          steps {
             script {
             
@@ -33,6 +37,9 @@ pipeline {
 // ############# Build db ##############
 
        stage ('Build db App') {            // build image
+ 	   agent {
+          label 'slave1'
+      }
  	     steps {
  	        script{                // build app
                dbapp = docker.build ("usrdb", "registration-database/")
@@ -44,6 +51,9 @@ pipeline {
 // ############# Build web app ##############       
            
  	  stage ('Build Web App') {            // build image
+ 	   agent {
+          label 'slave1'
+      }
  	     steps {
  	        script{                // build app
  
@@ -59,6 +69,9 @@ pipeline {
 //################ Add app to docker ###############
      	
      stage ('Build Docker Web App') {            // build image
+ 	   agent {
+          label 'slave1'
+      }
  	    steps {
  	       script{                // build app
 
@@ -73,6 +86,9 @@ pipeline {
 // ############# Commit dev version ##############
       
      stage ('Commit dev') {
+       agent {
+          label 'slave1'
+      }
         steps {
            script {
        
@@ -88,6 +104,9 @@ pipeline {
 // ############# Deploy to dev  ##############
       
      stage ('Deploy Docker Image') {
+       agent {
+          label 'ansible_master'
+      }
         steps {
            script{
 //                
@@ -95,18 +114,18 @@ pipeline {
               ansiblePlaybook(credentialsId: '8838ded7-6c9a-48c9-9963-997d5c8a9b7f', inventory: 'dev', playbook: 'dev_deploy.yml')
    
   
-              ansibleTower (credential: 'slave1', 
-                            extraVars: '', 
-                            importTowerLogs: true,
-                            importWorkflowChildLogs: false,
-                            inventory: 'Dev_Docker_Inventory',
-                            jobTags: '',
-                            jobTemplate: 'usersignup_install',
-                            limit: '',
-                            removeColor: false,
-                            templateType: 'job',
-                            towerServer: 'Ansible tower',
-                            verbose: true)
+//              ansibleTower (credential: 'slave1', 
+//                            extraVars: '', 
+//                            importTowerLogs: true,
+//                            importWorkflowChildLogs: false,
+//                            inventory: 'Dev_Docker_Inventory',
+//                            jobTags: '',
+//                            jobTemplate: 'usersignup_install',
+//                            limit: '',
+//                            removeColor: false,
+//                            templateType: 'job',
+//                            towerServer: 'Ansible tower',
+//                            verbose: true)
            }             //close script   
         }             //close steps
      }             //close stage
@@ -114,6 +133,10 @@ pipeline {
 // ############# Test Dev Deploy ##############       
            
  	  stage ('Dev Test') {            // test dev instance
+        agent {
+          label 'slave1'
+        }
+ 
  	     steps {
  	        script{                
  
@@ -129,6 +152,10 @@ pipeline {
 // ############# Commit ##############
       
       stage ('Commit to Prod') {
+        agent {
+          label 'slave1'
+      }
+        
          steps {
             script {
        
@@ -142,6 +169,11 @@ pipeline {
       }              //close stage   
 
       stage ('deploy to Prod') {
+       agent {
+          label 'ansible_master'
+      }
+       
+       
          steps{
             script {
                 ansibleTower (credential: 'slave1', 
