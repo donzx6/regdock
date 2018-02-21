@@ -7,11 +7,7 @@ pipeline {
    def dbcont= ''     
    }                     // close environment
 
-   agent {
-                    
-       label 'slave1'
-                    
-   }
+   agent any
            //execute on any agent/node
    tools
        {
