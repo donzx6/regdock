@@ -76,6 +76,7 @@ pipeline {
  	    steps {
  	       script{                // build app
 
+               sh "echo $pwd"
                sh "cp /home/ubuntu/workspace/labpip/app/target/UserSignup.war /home/ubuntu/workspace/labpip/registration-webserver/"
                webapp = docker.build ("usrsignup", "registration-webserver/")
            
