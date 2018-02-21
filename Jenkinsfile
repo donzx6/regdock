@@ -117,7 +117,7 @@ pipeline {
 //                
               sh "echo $pwd"
               sh "sudo cp /home/ec2-user/workspace/labpip/inventory/hosts /etc/ansible/hosts" 
-              ansiblePlaybook(credentialsId: '8838ded7-6c9a-48c9-9963-997d5c8a9b7f', inventory: 'dev', playbook: 'imgpull.yml')
+              ansiblePlaybook(credentialsId: '8838ded7-6c9a-48c9-9963-997d5c8a9b7f', inventory: '/etc/ansible/hosts', playbook: 'imgpull.yml')
    
   
 //              ansibleTower (credential: 'slave1', 
