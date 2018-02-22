@@ -163,7 +163,7 @@ pipeline {
 //      }
        
        
-         steps{
+         steps {
             script {
 //                ansibleTower (credential: 'slave1', 
 //                              extraVars: '', 
