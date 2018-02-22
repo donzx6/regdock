@@ -60,7 +60,7 @@ pipeline {
  
       // Run the maven build
 
-               sh "mvn -f app/pom.xml clean package -U"         
+               sh "mvn -f app/pom.xml clean package -U "         
            
        
             }             //close script   
@@ -112,23 +112,8 @@ pipeline {
         steps {
            script{
 //                
-              sh "echo $pwd"
-              sh "sudo cp /home/ec2-user/workspace/labpip/inventory/hosts /etc/ansible/hosts" 
-              ansiblePlaybook(credentialsId: '8838ded7-6c9a-48c9-9963-997d5c8a9b7f', inventory: 'inventory/hosts', playbook: 'imgpull.yml')
+             ansiblePlaybook(credentialsId: '8838ded7-6c9a-48c9-9963-997d5c8a9b7f', inventory: 'inventory/hosts', playbook: 'imgpull.yml')
    
-  
-//              ansibleTower (credential: 'slave1', 
-//                            extraVars: '', 
-//                            importTowerLogs: true,
-//                            importWorkflowChildLogs: false,
-//                            inventory: 'Dev_Docker_Inventory',
-//                            jobTags: '',
-//                            jobTemplate: 'usersignup_install',
-//                            limit: '',
-//                            removeColor: false,
-//                            templateType: 'job',
-//                            towerServer: 'Ansible tower',
-//                            verbose: true)
            }             //close script   
         }             //close steps
      }             //close stage
@@ -143,9 +128,10 @@ pipeline {
  	     steps {
  	        script{                
  
-      // Run the maven test
+      // Pull the test app
+               git branch: 'master', credentialsId: '585d90d4-4d66-42ff-ad2f-7a4b7615f623', url: 'https://gitlab.com/Don-Emmerson/Testapp.git'
 
-               sh "mvn -f app/pom.xml test"         
+               sh "mvn -f Testapp/pom.xml test"         
            
            }             //close script   
         }             //close steps
