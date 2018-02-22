@@ -25,6 +25,4 @@
   docker_image:
     name: docker.donemmerson.co.uk:443/usrdb
     tag: latest
-    state: absent
-    
-    
+    state: absent    
