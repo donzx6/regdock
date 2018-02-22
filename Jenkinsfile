@@ -157,14 +157,14 @@ pipeline {
          }              //close steps
       }              //close stage   
 
-      stage ('deploy to Prod') {
+//      stage ('deploy to Prod') {
 //       agent {
 //          label 'ansible_master'
 //      }
        
        
-         steps {
-            script {
+//         steps {
+//            script {
 //                ansibleTower (credential: 'slave1', 
 //                              extraVars: '', 
 //                              importTowerLogs: true,
@@ -177,11 +177,11 @@ pipeline {
 //                              templateType: 'job',
 //                              towerServer: 'Ansible tower',
 //                              verbose: true)
-            }                // end scripts
+//            }                // end scripts
 
-         }                // end steps
+//         }                // end steps
 
-       }                 // end stage
+//       }                 // end stage
 
    }              // close stages 
 }             // close pipeline    
