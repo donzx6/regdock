@@ -1,4 +1,3 @@
----
 - name: delete container
   docker_container:
     name: dbapp
