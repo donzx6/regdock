@@ -111,7 +111,7 @@ pipeline {
 //      }
         steps {
            script{
-//                
+                
              ansiblePlaybook(credentialsId: '8838ded7-6c9a-48c9-9963-997d5c8a9b7f', inventory: 'inventory/hosts-dev', playbook: 'imgpull.yml')
    
            }             //close script   
