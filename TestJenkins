@@ -31,13 +31,15 @@ pipeline {
                
               git branch: 'master', credentialsId: '585d90d4-4d66-42ff-ad2f-7a4b7615f623', url: 'https://gitlab.com/Don-Emmerson/registration-docker.git'
 //      }
+  timeout(time:5, unit:'DAYS') {
+    input message:'Approve deployment?', submitter: 'it-ops'
+    }
            }             // close script 
         }            // close steps
      }            //close stage
      
-     timeout(time:5, unit:'DAYS') {
-    input message:'Approve deployment?', submitter: 'it-ops'
-}
+   
+
      stage('Pulling Code2') {   // check out code from gitlab
 //      agent {
 //          label 'slave1'
