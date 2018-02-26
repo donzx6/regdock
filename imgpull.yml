@@ -4,8 +4,8 @@
   remote_user: ec2-user
   become: yes
   become_method: sudo
-- debug:
-     msg "tag is" {{TAG}}
+  - debug:
+      msg "tag is" {{TAG}}
   roles:
    - { role: Dockerclean }
    - { role: network }
