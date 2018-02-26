@@ -43,7 +43,7 @@ pipeline {
 //      }
  	     steps {
  	        script{                // build app
-               dbapp = docker.build ("usrdb:$(env.BUILD_ID)", "registration-database/")
+               dbapp = docker.build ("usrdb:${env.BUILD_ID}", "registration-database/")
        
             }             //close script   
          }             //close steps
@@ -78,7 +78,7 @@ pipeline {
 
                sh "echo $pwd"
                sh "cp /home/ubuntu/workspace/labpip/app/target/UserSignup.war /home/ubuntu/workspace/labpip/registration-webserver/"
-               webapp = docker.build ("usrsignup:$(env.BUILD_ID)", "registration-webserver/")
+               webapp = docker.build ("usrsignup:${env.BUILD_ID}", "registration-webserver/")
            
             }             //close script   
          }             //close steps
