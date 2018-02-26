@@ -1,12 +1,12 @@
 ---
-- debug:
-   msg: "tag is" {{ TAG  }}
 - name: pull dbapp
-  docker_image:
-    repository: docker.donemmerson.co.uk:443/usrdb
-    name: docker.donemmerson.co.uk:443/usrdb
-    tag: "{{ TAG }}"
-    state: present
+  strategy: debug
+     tasks:
+         docker_image:
+         repository: docker.donemmerson.co.uk:443/usrdb
+         name: docker.donemmerson.co.uk:443/usrdb
+         tag: "{{ TAG }}"
+         state: present
     
 - name: pull webapp
   docker_image:
