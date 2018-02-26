@@ -1,4 +1,7 @@
 pipeline {
+    options {
+        buildDiscarder(logRotator(numToKeepStr: '20'))
+    }
 
    environment {         // ensure app object available across stages
    def webapp = '' 
