@@ -1,5 +1,7 @@
 ---
 - name: pull dbapp
+ -debug:
+     msg "tag is" {{TAG}}
   docker_image:
     repository: docker.donemmerson.co.uk:443/usrdb
     name: docker.donemmerson.co.uk:443/usrdb
