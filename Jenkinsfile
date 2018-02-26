@@ -1,6 +1,6 @@
 pipeline {
     options {
-        buildDiscarder(logRotator(numToKeepStr: '20'))
+        buildDiscarder(logRotator(numToKeepStr: '2'))
     }
 
    environment {         // ensure app object available across stages
