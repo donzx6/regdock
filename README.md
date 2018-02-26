@@ -7,7 +7,7 @@ Java developers can use Docker to build a development environment where they can
 
 
 
-This tutorial includes Docker images and an application for Java development using containers. An examples for Eclipse, IntelliJ CE, and Netbeans are provided.
+This tutor includes Docker images and an application for Java development using containers. An examples for Eclipse, IntelliJ CE, and Netbeans are provided.
 
 * [Eclipse](Eclipse-README.md)
 * [IntelliJ](IntelliJ-README.md)
