@@ -161,7 +161,7 @@ pipeline {
        
          steps {
             script {
-                    ansiblePlaybook(credentialsId: '8838ded7-6c9a-48c9-9963-997d5c8a9b7f', extras: '-e TAG="latest"', inventory: 'inventory/hosts-prod', playbook: 'imgpull.yml')
+              ansiblePlaybook(credentialsId: '8838ded7-6c9a-48c9-9963-997d5c8a9b7f', extras: '-e TAG=${BUILD_NUMBER}', inventory: 'inventory/hosts-prod', playbook: 'imgpull.yml')
                              
             }                // end scripts
 
