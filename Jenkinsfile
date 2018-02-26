@@ -43,7 +43,7 @@ pipeline {
 //      }
  	     steps {
  	        script{                // build app
-               dbapp = docker.build ("usrdb", "registration-database/")
+               dbapp = docker.build ("usrdb:$(env.BUILD_ID)", "registration-database/")
        
             }             //close script   
          }             //close steps
@@ -78,7 +78,7 @@ pipeline {
 
                sh "echo $pwd"
                sh "cp /home/ubuntu/workspace/labpip/app/target/UserSignup.war /home/ubuntu/workspace/labpip/registration-webserver/"
-               webapp = docker.build ("usrsignup", "registration-webserver/")
+               webapp = docker.build ("usrsignup:$(env.BUILD_ID)", "registration-webserver/")
            
             }             //close script   
          }             //close steps
@@ -95,8 +95,8 @@ pipeline {
            script {
        
                docker.withRegistry('https://docker.donemmerson.co.uk:443', '4aa2c853-54a6-40b9-8fca-0fc13d9a26a9') {
-               webapp.push('$(BUILD_NUMBER)')
-               dbapp.push($(BUILD_NUMBER))
+               webapp.push()
+               dbapp.push()
        
               }              // close docker.with.reg
            }              // close script
