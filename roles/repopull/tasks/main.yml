@@ -2,13 +2,13 @@
 - name: pull dbapp
   docker_image:
     repository: docker.donemmerson.co.uk:443/usrdb
-    name: docker.donemmerson.co.uk:443/usrdb:dev
-    tag: {TAG}
+    name: docker.donemmerson.co.uk:443/usrdb
+    tag: {{ TAG }}
     state: present
     
 - name: pull webapp
   docker_image:
     repository: docker.donemmerson.co.uk:443/usrsignup
     name: docker.donemmerson.co.uk:443/usrsignup
-    tag: {TAG}
+    tag: {{ TAG }}
     state: present
