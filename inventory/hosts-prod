@@ -1,3 +1,3 @@
 [prod]
-ans_prod1.donemmerson.co.uk
-ans_prod2.donemmerson.co.uk
+ans_prod1.donemmerson.co.uk ansible_connection=ssh ansible_port=22 ansible_user=ec2-user
+ans_prod2.donemmerson.co.uk ansible_connection=ssh ansible_port=22 ansible_user=ec2-user
