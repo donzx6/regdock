@@ -2,7 +2,7 @@
 - name: Re-create a db container
   docker_container:
     name: dbapp
-    image: docker.donemmerson.co.uk:443/usrdb:latest
+    image: docker.donemmerson.co.uk:443/usrdb:{TAG}
     state: started
     exposed_ports:
       - 3306

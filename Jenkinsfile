@@ -95,8 +95,8 @@ pipeline {
            script {
        
                docker.withRegistry('https://docker.donemmerson.co.uk:443', '4aa2c853-54a6-40b9-8fca-0fc13d9a26a9') {
-               webapp.push('latest')
-               dbapp.push('latest')
+               webapp.push($(BUILD_NUMBER))
+               dbapp.push($(BUILD_NUMBER))
        
               }              // close docker.with.reg
            }              // close script
@@ -112,7 +112,7 @@ pipeline {
         steps {
            script{
                 
-             ansiblePlaybook(credentialsId: '8838ded7-6c9a-48c9-9963-997d5c8a9b7f', inventory: 'inventory/hosts-dev', playbook: 'imgpull.yml')
+             ansiblePlaybook(credentialsId: '8838ded7-6c9a-48c9-9963-997d5c8a9b7f', -e TAG=$(BUILD_NUMBER) inventory: 'inventory/hosts-dev', playbook: 'imgpull.yml')
    
            }             //close script   
         }             //close steps
@@ -149,39 +149,29 @@ pipeline {
             script {
        
                docker.withRegistry('https://docker.donemmerson.co.uk:443/', '4aa2c853-54a6-40b9-8fca-0fc13d9a26a9') {
-//               webapp.push('latest')
-//               dbapp.push('latest')
+               webapp.push('latest')
+               dbapp.push('latest')
 
                 }              // close docker.with.registry
             }              // close script
          }              //close steps
       }              //close stage   
 
-//      stage ('deploy to Prod') {
+      stage ('deploy to Prod') {
 //       agent {
 //          label 'ansible_master'
 //      }
        
        
-//         steps {
-//            script {
-//                ansibleTower (credential: 'slave1', 
-//                              extraVars: '', 
-//                              importTowerLogs: true,
-//                              importWorkflowChildLogs: false,
-//                              inventory: 'Prod_Docker_Inventory',
-//                              jobTags: '',
-//                              jobTemplate: 'usersignup_install',
-//                              limit: '',
-//                              removeColor: false,
-//                              templateType: 'job',
-//                              towerServer: 'Ansible tower',
-//                              verbose: true)
-//            }                // end scripts
+         steps {
+            script {
+                    ansiblePlaybook(credentialsId: '8838ded7-6c9a-48c9-9963-997d5c8a9b7f', -e TAG='latest' inventory: 'inventory/hosts-prod', playbook: 'imgpull.yml')
+                             
+            }                // end scripts
 
-//         }                // end steps
+         }                // end steps
 
-//       }                 // end stage
+       }                 // end stage
 
    }              // close stages 
 }             // close pipeline    

@@ -2,7 +2,7 @@
 - name: Create a webserver
   docker_container:
     name: webapp
-    image: docker.donemmerson.co.uk:443/usrsignup:latest
+    image: docker.donemmerson.co.uk:443/usrsignup:{TAG}
     state: started
     exposed_ports:
       - 8080
