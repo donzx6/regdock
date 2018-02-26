@@ -112,7 +112,7 @@ pipeline {
         steps {
            script{
                 
-             ansiblePlaybook(credentialsId: '8838ded7-6c9a-48c9-9963-997d5c8a9b7f', extravars: 'TAG=$(BUILD_NUMBER)'  inventory: 'inventory/hosts-dev', playbook: 'imgpull.yml')
+             ansiblePlaybook(credentialsId: '8838ded7-6c9a-48c9-9963-997d5c8a9b7f', extraVars: 'TAG=$(BUILD_NUMBER)'  inventory: 'inventory/hosts-dev', playbook: 'imgpull.yml')
    
            }             //close script   
         }             //close steps
@@ -165,7 +165,7 @@ pipeline {
        
          steps {
             script {
-                    ansiblePlaybook(credentialsId: '8838ded7-6c9a-48c9-9963-997d5c8a9b7f', extravars: 'TAG='latest'' inventory: 'inventory/hosts-prod', playbook: 'imgpull.yml')
+                    ansiblePlaybook(credentialsId: '8838ded7-6c9a-48c9-9963-997d5c8a9b7f', extraVars: 'TAG='latest'' inventory: 'inventory/hosts-prod', playbook: 'imgpull.yml')
                              
             }                // end scripts
 
