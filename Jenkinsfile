@@ -161,7 +161,9 @@ pipeline {
        
          steps {
             script {
-              ansiblePlaybook(credentialsId: '8838ded7-6c9a-48c9-9963-997d5c8a9b7f', extras: '-e TAG=${BUILD_NUMBER}', inventory: 'inventory/hosts-dev', playbook: 'imgpull.yml')
+            
+              git branch: 'master', credentialsId: '585d90d4-4d66-42ff-ad2f-7a4b7615f623', url: 'https://gitlab.com/Don-Emmerson/registration-docker.git'
+              ansiblePlaybook(credentialsId: '8838ded7-6c9a-48c9-9963-997d5c8a9b7f', extras: '-e TAG="latest"', inventory: 'inventory/hosts-prod', playbook: 'imgpull.yml')
                              
             }                // end scripts
 
