@@ -1,12 +1,13 @@
 ---
+- name: get vars
+  debug:
+    var: TAG    
 - name: pull dbapp
-  strategy: debug
-     tasks:
-         docker_image:
-         repository: docker.donemmerson.co.uk:443/usrdb
-         name: docker.donemmerson.co.uk:443/usrdb
-         tag: "{{ TAG }}"
-         state: present
+  docker_image:
+     repository: docker.donemmerson.co.uk:443/usrdb
+     name: docker.donemmerson.co.uk:443/usrdb
+     tag: "{{ TAG }}"
+     state: present
     
 - name: pull webapp
   docker_image:
