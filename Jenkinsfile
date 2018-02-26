@@ -95,7 +95,7 @@ pipeline {
            script {
        
                docker.withRegistry('https://docker.donemmerson.co.uk:443', '4aa2c853-54a6-40b9-8fca-0fc13d9a26a9') {
-               webapp.push($(BUILD_NUMBER))
+               webapp.push('$(BUILD_NUMBER)')
                dbapp.push($(BUILD_NUMBER))
        
               }              // close docker.with.reg
