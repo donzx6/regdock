@@ -108,7 +108,7 @@ pipeline {
      
 // ############# Deploy to dev  ##############
       
-     stage ('Deploy Docker Images to devtest') {
+     stage ('Deploy Docker Images to devtest via ansible') {
 //       agent {
 //          label 'ansible_master'
 //      }
