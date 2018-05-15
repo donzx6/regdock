@@ -40,7 +40,7 @@ pipeline {
 
 // ############# Build db ##############
 
-       stage ('Build db App') {            // build image
+       stage ('Build db container') {            // build image
 // 	   agent {
 //          label 'slave1'
 //      }
@@ -72,7 +72,7 @@ pipeline {
       
 //################ Add app to docker ###############
      	
-     stage ('Build Docker Web App') {            // build image
+     stage ('Put Web App in Docker container') {            // build image
 // 	   agent {
 //          label 'slave1'
 //      }
@@ -90,7 +90,7 @@ pipeline {
       
 // ############# Commit dev version ##############
       
-     stage ('Commit dev') {
+     stage ('Commit dev to docker registry') {
 //       agent {
 //          label 'slave1'
 //      }
@@ -108,7 +108,7 @@ pipeline {
      
 // ############# Deploy to dev  ##############
       
-     stage ('Deploy Docker Image') {
+     stage ('Deploy Docker Images to devtest') {
 //       agent {
 //          label 'ansible_master'
 //      }
@@ -123,7 +123,7 @@ pipeline {
      
 // ############# Test Dev Deploy ##############       
            
- 	  stage ('Dev Test') {            // test dev instance
+ 	  stage ('Execute Test on devtest server') {            // test dev instance
 //        agent {
 //          label 'slave1'
 //        }
@@ -143,7 +143,7 @@ pipeline {
 
 // ############# Commit ##############
       
-      stage ('Commit to Prod') {
+      stage ('Commit change to production docker registry') {
 //        agent {
 //          label 'slave1'
 //      }
@@ -160,7 +160,7 @@ pipeline {
          }              //close steps
       }              //close stage   
 
-      stage ('deploy to Prod') {
+      stage ('deploy containers to Production') {
        
          steps {
             script {
