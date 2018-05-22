@@ -46,7 +46,7 @@ body {
 	<div class="container">
 		<div class="jumbotron">
 			<div>
-				<h1>Welcome to Donsecret platform! </h1>
+				<h1>Welcome to Don's secret platform! </h1>
 				<p>To get started, enter your details to register. 
 					Or login to access your details, if you are already registered.</p>
 			</div>
