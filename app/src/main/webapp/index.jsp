@@ -5,7 +5,7 @@
 <style>
 body {
 	height: 100%;
-	 margin: 0;
+	margin: 0;
 	background: url(assets/img/dockercon2035.png);
 	background-size: 1440px 800px;
 	background-repeat: no-repeat;
